@@ -3,6 +3,7 @@ extern crate ncurses;
 mod stats;
 mod player;
 mod pos;
+mod map;
 
 fn main()
 {

@@ -1,7 +1,8 @@
 use super::stats;
 use super::pos;
 
-struct Player
+pub struct Player
 {
 	stats:	stats::Stats,
+	pos: pos::Pos,
 }

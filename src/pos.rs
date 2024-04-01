@@ -1,7 +1,7 @@
-struct Pos
+pub struct Pos
 {
-	x:	i32,
-	y:	i32,
+	x:	u32,
+	y:	u32,
 }
 
 pub enum Direction
@@ -18,109 +18,60 @@ pub enum Direction
 
 impl Pos
 {
-	fn mov(	&mut self, 
-			direction: Direction,
-			min_x: i32,
-			max_x: i32,
-			min_y: i32,
-			max_y: i32) -> bool
+	pub fn set_pos(	&mut self,
+					new_x: u32,
+					new_y: u32) -> bool
 	{
-		let min_check = |a, min| -> bool
-		{
-			if (a - 1) < min
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		};
+		//check valid
 		
-		let max_check = |a, max| -> bool
-		{
-			if (a + 1) > max
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		};
+		self.x = new_x;
+		self.y = new_y;
+		return true;
+	}
+	
+	pub fn mov(	&mut self, 
+				direction: Direction)
+	{
+		//check valid
 		
 		match direction
 		{
 			Direction::Left => 
 			{
-				if min_check(self.x, min_x)
-				{
-					self.x -= 1;
-					return true;
-				}
+				self.x -= 1;
 			},
 			Direction::Right => 
 			{
-				if max_check(self.x, max_x)
-				{
-					self.x += 1;
-					return true;
-				}
+				self.x += 1;
 			},
 			Direction::Up =>
 			{
-				if min_check(self.y, min_y)
-				{
-					self.y -= 1;
-					return true;
-				}
+				self.y -= 1;
 			},
 			Direction::Down => 
 			{
-				if max_check(self.y, max_y)
-				{
-					self.y += 1;
-					return true;
-				}
+				self.y += 1;
 			},
 			Direction::UpLeft => 
 			{
-				if min_check(self.x, min_x) && min_check(self.y, min_y)
-				{
-					self.x -= 1;
-					self.y -= 1;
-					return true;
-				}
+				self.x -= 1;
+				self.y -= 1;
 			},
 			Direction::UpRight => 
 			{
-				if max_check(self.x, max_x) && min_check(self.y, min_y)
-				{
-					self.x += 1;
-					self.y -= 1;
-					return true;
-				}
+				self.x += 1;
+				self.y -= 1;
 			},
 			Direction::DownLeft => 
 			{
-				if min_check(self.x, min_x) && max_check(self.y, max_y)
-				{
-					self.x -= 1;
-					self.y += 1;
-					return true;
-				}
+				self.x -= 1;
+				self.y += 1;
 			},
 			Direction::DownRight => 
 			{
-				if max_check(self.x, max_x) && max_check(self.y, max_y)
-				{
-					self.x += 1;
-					self.y += 1;
-					return true;
-				}
+				self.x += 1;
+				self.y += 1;
 			},
 		}
-		
-		return false
 	}
 }
