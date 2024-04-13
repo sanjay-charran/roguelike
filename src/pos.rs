@@ -18,6 +18,13 @@ pub enum Direction
 
 impl Pos
 {
+	pub fn new() -> Pos
+	{
+		return Pos{	x:	0,
+					y:	0,
+		};
+	}
+	
 	pub fn set_pos(	&mut self,
 					new_x: u32,
 					new_y: u32) -> bool

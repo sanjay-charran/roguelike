@@ -8,11 +8,10 @@ impl Tile
 {
 	pub fn get_sym(&self) -> char
 	{
-		match (self)
+		match self
 		{
 			Tile::Grass 	=> return ',',
 			Tile::Wall		=> return '/',
-			_				=> return '?',
 		}
 	}
 }
